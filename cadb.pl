@@ -42,3 +42,23 @@ province_capitals :-
     capital(X, Y),
     format('The capital of ~w is ~w', [X, Y]).
 
+
+% ---------------------------
+
+whatis(X) :-
+    country(X),
+    format('~w is a country', [X]).
+
+whatis(X) :-
+    province(X),
+    format('~w is a province of canada', [X]).
+
+whatis(X) :-
+    capital(Y, X),
+    format('~w is the capital of ~w', [X, Y]).
+
+whatis(X) :-
+    largest_city(Y, X),
+    format('~w is the largest city in ~w', [X, Y]).
+
+% ---------------------------
