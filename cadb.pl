@@ -25,6 +25,18 @@ capital(saskatchewan, regina).
 capital(alberta, edmonton).
 capital('newfoundland and labrador', 'st. john\'s').
 
+largest_city(canada, toronto).
+largest_city(ontario, toronto).
+largest_city(quebec, montreal).
+largest_city('nova scotia', halifax).
+largest_city('new brunswick', moncton).
+largest_city(manitoba, winnipeg).
+largest_city('british columbia', vancouver).
+largest_city('prince edward island', charlottetown).
+largest_city(saskatchewan, saskatoon).
+largest_city(alberta, calgary).
+largest_city('newfoundland and labrador', 'st. john\'s').
+
 province_capitals :-
     province(X),
     capital(X, Y),
