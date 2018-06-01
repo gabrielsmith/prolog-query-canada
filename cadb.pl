@@ -1,29 +1,32 @@
 country(canada).
 
-located(canada, north_america).
+located(canada, 'north america').
 
 province(ontario).
 province(quebec).
-province(nova_scotia).
-province(new_brunswick).
+province('nova scotia').
+province('new brunswick').
 province(manitoba).
-province(british_columbia).
-province(prince_edward_island).
+province('british columbia').
+province('prince edward island').
 province(saskatchewan).
 province(alberta).
-province(newfoundland_and_labrador).
+province('newfoundland and labrador').
 
 capital(canada, ottawa).
 capital(ontario, toronto).
-capital(quebec, quebec_city).
-capital(nova_scotia, halifax).
-capital(new_brunswick, fredericton).
+capital(quebec, 'quebec city').
+capital('nova scotia', halifax).
+capital('new brunswick', fredericton).
 capital(manitoba, winnipeg).
-capital(british_columbia, victoria).
-capital(prince_edward_island, charlottetown).
+capital('british columbia', victoria).
+capital('prince edward island', charlottetown).
 capital(saskatchewan, regina).
 capital(alberta, edmonton).
-capital(newfoundland_and_labrador, st_johns).
+capital('newfoundland and labrador', 'st. john\'s').
 
-
+province_capitals :-
+    province(X),
+    capital(X, Y),
+    format('The capital of ~w is ~w', [X, Y]).
 
