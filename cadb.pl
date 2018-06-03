@@ -2,22 +2,22 @@ country(canada).
 
 located(canada, 'north america').
 
-province(ontario).
-province(quebec).
+province('ontario').
+province('quebec').
 province('nova scotia').
 province('new brunswick').
-province(manitoba).
+province('manitoba').
 province('british columbia').
 province('prince edward island').
-province(saskatchewan).
-province(alberta).
+province('saskatchewan').
+province('alberta').
 province('newfoundland and labrador').
 
-capital(canada, ottawa).
-capital(ontario, toronto).
-capital(quebec, 'quebec city').
-capital('nova scotia', halifax).
-capital('new brunswick', fredericton).
+capital('canada', 'ottawa').
+capital('ontario', 'toronto').
+capital('quebec', 'quebec city').
+capital('nova scotia', 'halifax').
+capital('new brunswick', 'fredericton').
 capital(manitoba, winnipeg).
 capital('british columbia', victoria).
 capital('prince edward island', charlottetown).
@@ -37,13 +37,21 @@ largest_city(saskatchewan, saskatoon).
 largest_city(alberta, calgary).
 largest_city('newfoundland and labrador', 'st. john\'s').
 
+ocean('ontario','atlantic').
+ocean('quebec','atlantic').
+ocean('nova scotia','atlantic').
+ocean('prince edward island','atlantic').
+ocean('manitoba','atlantic').
+ocean('new brunswick','atlantic').
+ocean('newfoundland and labrador','atlantic').
+ocean('british columbia','pacific').
+ocean('alberta','none').
+ocean('saskatchewan','none').
+
 province_capitals :-
     province(X),
     capital(X, Y),
     format('The capital of ~w is ~w', [X, Y]).
-
-
-% ---------------------------
 
 whatis(X) :-
     country(X),
@@ -60,5 +68,3 @@ whatis(X) :-
 whatis(X) :-
     largest_city(Y, X),
     format('~w is the largest city in ~w', [X, Y]).
-
-% ---------------------------
