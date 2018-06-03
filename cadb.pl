@@ -42,6 +42,11 @@ province_capitals :-
     capital(X, Y),
     format('The capital of ~w is ~w', [X, Y]).
 
+capital_is_largest_city(X) :-
+    province(X),
+    capital(X, Y),
+    largest_city(X, Y).
+
 
 % ---------------------------
 
