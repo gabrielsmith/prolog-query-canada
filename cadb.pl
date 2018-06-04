@@ -58,6 +58,15 @@ capital_is_largest_city(X) :-
     capital(X, Y),
     largest_city(X, Y).
 
+which_ocean(X) :-
+    province(X),
+    ocean(X,Y),
+    format('~w has a beatiful view from ~w ocean',[X,Y]).
+
+surrounded_by_ocean :-
+    province(X),
+    ocean(X,Y),
+    format('Canada is surrounded by ~w ocean', Y).
 
 % ---------------------------
 
