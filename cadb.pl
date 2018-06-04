@@ -37,29 +37,33 @@ largest_city(saskatchewan, saskatoon).
 largest_city(alberta, calgary).
 largest_city('newfoundland and labrador', 'st. john\'s').
 
-ocean('ontario','atlantic').
-ocean('quebec','atlantic').
-ocean('nova scotia','atlantic').
-ocean('prince edward island','atlantic').
-ocean('manitoba','atlantic').
-ocean('new brunswick','atlantic').
-ocean('newfoundland and labrador','atlantic').
-ocean('british columbia','pacific').
-ocean('alberta','none').
-ocean('saskatchewan','none').
+ocean(pacific).
+ocean(atlantic).
+ocean(none).
+
+beach('ontario','atlantic').
+beach('quebec','atlantic').
+beach('nova scotia','atlantic').
+beach('prince edward island','atlantic').
+beach('manitoba','atlantic').
+beach('new brunswick','atlantic').
+beach('newfoundland and labrador','atlantic').
+beach('british columbia','pacific').
+beach('alberta','none').
+beach('saskatchewan','none').
+
+ocean_exit(X) :-
+  ocean(X),
+  beach(Y, X),
+  format('The province of ~w has access to the ~w ocean', [Y, X]).
+
+travel_by_boat ():-
+
 
 province_capitals :-
     province(X),
     capital(X, Y),
     format('The capital of ~w is ~w', [X, Y]).
-
-capital_is_largest_city(X) :-
-    province(X),
-    capital(X, Y),
-    largest_city(X, Y).
-
-
-% ---------------------------
 
 whatis(X) :-
     country(X),
