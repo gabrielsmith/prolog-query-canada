@@ -76,7 +76,7 @@ ocean_exit(X) :-
   beach(Y, X),
   format('The province of ~w has access to the ~w ocean', [Y, X]).
 
-province_capitals :-
+province_capitals(X) :-
     province(X),
     capital(X, Y),
     format('The capital of ~w is ~w', [X, Y]).
@@ -122,3 +122,27 @@ weather(X) :-
 	data(X,_,Y,Z),
 	K is ((Y + Z)/2),
 	format('The average temperature of ~w is ~f °C',[X,K]).
+	
+highest() :-
+	data(MaxC, MaxH, _,_),
+	\+ (data(C, H, _,_), C \= MaxC, MaxH < H),
+	format('The highest city is ~w'[MaxC]).
+	
+highestCaptal() :-
+	data(MaxC, MaxH, _,_),
+	\+ (data(C, H, _,_), C \= MaxC , capital(_,C), MaxH < H),
+	format('The highest city is ~w'[MaxC]).
+	
+compareTemp (X,Y) :-
+	data(X,_,K,Z),
+	K is ((K + Z)/2),
+	data(X,_,W,Z),
+	W is max(((W + Z)/2), K),
+	data(C,W,_,_),
+	format('~w is warmer'[C]).
+
+% ---------------------------------
+X:' is the captal of ':Y:'?' = province(Y,X).
+'What is the captal of ':X:'?' = province_capitals(X).
+'What is the highest city?' = highest().
+'What is the highest capital' = highestCaptal.
