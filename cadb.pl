@@ -29,7 +29,7 @@ data('ottawa', 114, 11.3, 1.4).
 data('toronto', 173, 13.0, 3.3).
 data('quebec city', 74, 9.2, -0.8).
 data('halifax', 153, 11.3, 1.9).
-data('fredericton', 21, 11.4, -0,2).
+data('fredericton', 21, 11.4, -0.2).
 data('winnipeg', 239, 8.7, -2.7).
 data('victoria', 20, 14.4, 5.6).
 data('charlottetown', 49, 9.9, 1.3).
@@ -76,9 +76,6 @@ ocean_exit(X) :-
   beach(Y, X),
   format('The province of ~w has access to the ~w ocean', [Y, X]).
 
-travel_by_boat ():-
-
-
 province_capitals :-
     province(X),
     capital(X, Y),
@@ -91,12 +88,11 @@ capital_is_largest_city(X) :-
 
 which_ocean(X) :-
     province(X),
-    ocean(X,Y),
+    ocean(Y),
     format('~w has a beatiful view from ~w ocean',[X,Y]).
 
 surrounded_by_ocean :-
-    province(X),
-    ocean(X,Y),
+    ocean(Y),
     format('Canada is surrounded by ~w ocean', Y).
 
 % ---------------------------
@@ -116,13 +112,13 @@ whatis(X) :-
 whatis(X) :-
     largest_city(Y, X),
     format('~w is the largest city in ~w', [X, Y]).
-	
+
 % -------------------------------
 height(X) :-
-	data(X,Y,_,_)
-	format('The height of ~w is ~d', [X,Y])
-	
+	data(X,Y,_,_),
+	format('The height of ~w is ~d', [X,Y]).
+
 weather(X) :-
-	data(X,_,Y,Z)
-	K is (Y + Z)/2
-	format('The average temperature of ~w is ~f °C',[X,K])
+	data(X,_,Y,Z),
+	K is ((Y + Z)/2),
+	format('The average temperature of ~w is ~f °C',[X,K]).
