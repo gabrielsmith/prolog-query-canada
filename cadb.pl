@@ -18,12 +18,31 @@ capital('ontario', 'toronto').
 capital('quebec', 'quebec city').
 capital('nova scotia', 'halifax').
 capital('new brunswick', 'fredericton').
-capital(manitoba, winnipeg).
-capital('british columbia', victoria).
-capital('prince edward island', charlottetown).
-capital(saskatchewan, regina).
-capital(alberta, edmonton).
+capital('manitoba', 'winnipeg').
+capital('british columbia', 'victoria').
+capital('prince edward island', 'charlottetown').
+capital('saskatchewan', 'regina').
+capital('alberta', 'edmonton').
 capital('newfoundland and labrador', 'st. john\'s').
+
+data('ottawa', 114, 11.3, 1.4).
+data('toronto', 173, 13.0, 3.3).
+data('quebec city', 74, 9.2, -0.8).
+data('halifax', 153, 11.3, 1.9).
+data('fredericton', 21, 11.4, -0,2).
+data('winnipeg', 239, 8.7, -2.7).
+data('victoria', 20, 14.4, 5.6).
+data('charlottetown', 49, 9.9, 1.3).
+data('regina', 578, 9.3, -3.2).
+data('edmonton', 671, 9.5, -2.3).
+data('st. john\'s', 141, 9.0, 1.0).
+data('montreal', 36, 15.5, 2.0).
+data('moncton', 71, 10.7, 0.1).
+data('vancouver', 4, 13.9, 6.8).
+data('saskatoon', 504, 8.6, -3.5).
+data('calgary', 1084, 10.8, -1.9).
+
+
 
 largest_city(canada, toronto).
 largest_city(ontario, toronto).
@@ -97,3 +116,13 @@ whatis(X) :-
 whatis(X) :-
     largest_city(Y, X),
     format('~w is the largest city in ~w', [X, Y]).
+	
+% -------------------------------
+height(X) :-
+	data(X,Y,_,_)
+	format('The height of ~w is ~d', [X,Y])
+	
+weather(X) :-
+	data(X,_,Y,Z)
+	K is (Y + Z)/2
+	format('The average temperature of ~w is ~f °C',[X,K])
