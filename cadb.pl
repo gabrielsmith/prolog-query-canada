@@ -170,9 +170,17 @@ highest_temp_coast_province :-
 	largest_city(P, C),
 	beach(P, O),
 	format('The coastal province bathed by the ~w ocean, whose largest city has the highest average temperature, is ~w', [O, P]).
+	
+write_list([]).
+ 
+write_list([Head|Tail]) :-
+  write(Head), nl,
+  write_list(Tail).
+
 
 lowNonCap :-
-	findall(Y, ((data(Y, X, _, _), X<50), L))),
-	findall(X,(capital(_,X), L2 )),
+	findall(Y, (data(Y, X, _, _), X<50), L),
+	findall(X,(capital(_,X)), L2 ),
 	subtract(L,L2,O),
-	format('The not capitals lower than 50m are ~w',[O]).
+	format('The not capitals lower than 50m are'),
+	write_list(O).
