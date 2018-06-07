@@ -133,3 +133,11 @@ weather(X) :-
 	data(X,_,Y,Z),
 	K is ((Y + Z)/2),
 	format('The average temperature of ~w is ~f °C', [X,K]).
+
+province_highest_capital_ocean :-
+    findall(X, (data(Y, X, _, _), capital(_, Y)), L),
+    max_list(L, V),
+    data(C, V, _, _),
+    capital(P, C),
+    beach(P, O),
+    format('The ocean that bathes the province of ~w whose capital is the highest in Canada is ~w', [P, O]).
