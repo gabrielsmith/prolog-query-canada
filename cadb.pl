@@ -170,3 +170,9 @@ highest_temp_coast_province :-
 	largest_city(P, C),
 	beach(P, O),
 	format('The coastal province bathed by the ~w ocean, whose largest city has the highest average temperature, is ~w', [O, P]).
+
+lowNonCap :-
+	findall(Y, ((data(Y, X, _, _), X<50), L))),
+	findall(X,(capital(_,X), L2 )),
+	subtract(L,L2,O),
+	format('The not capitals lower than 50m are ~w',[O]).
