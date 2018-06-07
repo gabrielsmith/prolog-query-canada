@@ -122,46 +122,46 @@ weather(X) :-
 	data(X,_,Y,Z),
 	K is ((Y + Z)/2),
 	format('The average temperature of ~w is ~f °C',[X,K]).
-	
+
 highest() :-
 	data(MaxC, MaxH, _,_),
 	\+ (data(C, H, _,_), C \= MaxC, MaxH < H),
-	format('The highest city is ~w'[MaxC]).
-	
+	format('The highest city is ~w',[MaxC]).
+
 highestCaptal() :-
 	data(MaxC, MaxH, _,_),
 	\+ (data(C, H, _,_), C \= MaxC , capital(_,C), MaxH < H),
-	format('The highest city is ~w'[MaxC]).
-	
+	format('The highest city is ~w',[MaxC]).
+
 compareTemp(X,Y) :-
 	data(X,_,K,Z),
 	K is ((K + Z)/2),
 	data(X,_,W,Z),
 	W is max(((W + Z)/2), K),
 	data(C,W,_,_),
-	format('~w is warmer'[C]).
-	
+	format('~w is warmer',[C]).
+
 greaterThanN(N) :-
-	format('The cities with temperature higher than ~d are: \n'[N]),
+	format('The cities with temperature higher than ~d are: \n',[N]),
 	\+ (data(C,_, Min,Max), (Max+Min)/2 > N, write(C),nl).
-	
+
 
 allCap_BigC() :-
 	format('the provinces that it\'s capital is the biggest city are \n'),
 	\+ (capital(X,Y), province(X),largest_city(X,Y),write(X),nl ).
-	
+
 group_Ocean(O) :-
 	format('The provinces with access to ~w ocean are:'),
 	\+ (ocean_exit(X,O), write(X)).
 
 % ---------------------------------
-X:' is the captal of ':Y:'?' = capital(Y,X).
-'What is ':X:'?'= whatis(X).
-'What is the captal of ':X:'?' = province_capitals(X).
-'Which is the highest city?' = highest().
-'Which is the highest capital?' = highestCaptal().
-'Which provinces have capitals that are also your biggest city?' = allCap_BigC().
-'Which of the ':X:', ':Y:' is the warmer?'= compareTemp(X,Y).
-'Which city has an annual average greater than ':N:' degrees?'= greaterThanN(N).
-'What is the average temperature of ':X:'?'=weather(X).
-'Which provinces has access to ':X:' ocean?'= group_Ocean(X).
+%X:' is the captal of ':Y:'?' = capital(Y,X).
+%'What is ':X:'?'= whatis(X).
+%'What is the captal of ':X:'?' = province_capitals(X).
+%'Which is the highest city?' = highest().
+%'Which is the highest capital?' = highestCaptal().
+%'Which provinces have capitals that are also your biggest city?' = allCap_BigC().
+%'Which of the ':X:', ':Y:' is the warmer?'= compareTemp(X,Y).
+%'Which city has an annual average greater than ':N:' degrees?'= greaterThanN(N).
+%'What is the average temperature of ':X:'?'=weather(X).
+%'Which provinces has access to ':X:' ocean?'= group_Ocean(X).
