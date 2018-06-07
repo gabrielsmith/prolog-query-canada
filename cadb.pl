@@ -129,7 +129,26 @@ height(X) :-
 	data(X,Y,_,_),
 	format('The height of ~w is ~d', [X,Y]).
 
+
 weather(X) :-
 	data(X,_,Y,Z),
 	K is ((Y + Z)/2),
 	format('The average temperature of ~w is ~f °C', [X,K]).
+
+
+
+average_weather([],[],X,Y) :-
+    Avg is (X/Y),
+    format('The average temperature of Canada is ~2f °C', [Avg]).
+
+
+average_weather([Head1|Tail1], [Head2|Tail2], X, Y) :-
+    Avg is ((Head1 + Head2)/2),
+    K is (X + Avg),
+    L is (Y + 1),
+    average_weather(Tail1,Tail2,K,L).
+
+average_weather(X) :-
+    findall(X, data(_,_,X,_), ListMaior),
+    findall(Y, data(_,_,_,Y), ListMenor),
+    average_weather(ListMaior, ListMenor, 0, 0).
