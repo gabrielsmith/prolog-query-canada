@@ -80,12 +80,12 @@ capital_is_largest_city(X) :-
     capital(X, Y),
     largest_city(X, Y).
 
-ocean_exit(X) :-
+ocean_exit :-
     ocean(X),
     beach(Y, X),
     format('The province of ~w has access to the ~w ocean', [Y, X]).
 
-which_ocean(X) :-
+which_ocean :-
     province(X),
     ocean(Y),
     format('~w has a beatiful view from ~w ocean',[X,Y]).
@@ -94,36 +94,16 @@ surrounded_by_ocean :-
     ocean(Y),
     format('Canada is surrounded by ~w ocean', Y).
 
-% ---------------------------
-
-whatis(X) :-
-    country(X),
-    format('~w is a country', [X]).
-
-whatis(X) :-
-    province(X),
-    format('~w is a province of canada', [X]).
-
-whatis(X) :-
-    capital(Y, X),
-    format('~w is the capital of ~w', [X, Y]).
-
-whatis(X) :-
-    largest_city(Y, X),
-    format('~w is the largest city in ~w', [X, Y]).
-
-% -------------------------------
-
 max_height :-
     findall(X, data(_, X, _, _), L),
     max_list(L, V),
     format('The maximum height is ~D', [V]).
 
-city_max_height :-
-    findall(X, data(_, X, _, _), L),
+capital_max_height :-
+    findall(X, (data(Y, X, _, _), capital(_,Y)), L),
     max_list(L, V),
     data(C, V, _,_),
-    format('The highest city in Canada is ~w', [C]).
+    format('The highest capital in Canada is ~w', [C]).
 
 height(X) :-
 	data(X,Y,_,_),
