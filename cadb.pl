@@ -70,7 +70,7 @@ beach('british columbia','pacific').
 beach('alberta','none').
 beach('saskatchewan','none').
 
-province_capitals(X) :-
+province_capitals:-
     province(X),
     capital(X, Y),
     format('The capital of ~w is ~w', [X, Y]).
@@ -169,9 +169,18 @@ highest_temp_coast_province :-
 	data(C, _, V, _),
 	largest_city(P, C),
 	beach(P, O),
+	format('The coastal province bathed by the ~w ocean, whose largest city has the highest average temperature, is ~w', [O, P]).
 
-  format('The coastal province bathed by the ~w ocean, whose largest city has the highest average temperature, is ~w', [O, P]),nl.
+write_list([]).
 
-resolve:-
-highest_temp_coast_province,
-province_highest_capital_ocean.
+write_list([Head|Tail]) :-
+  write(Head), nl,
+  write_list(Tail).
+
+
+lowNonCap :-
+	findall(Y, (data(Y, X, _, _), X<50), L),
+	findall(X,(capital(_,X)), L2 ),
+	subtract(L,L2,O),
+	format('The not capitals lower than 50m are'),
+	write_list(O).
