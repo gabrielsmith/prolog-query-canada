@@ -161,7 +161,7 @@ province_highest_capital_ocean :-
     data(C, V, _, _),
     capital(P, C),
     beach(P, O),
-    format('The ocean that bathes the province of ~w whose capital ~w is the highest in Canada is ~w', [P, C, O]).
+    format('The ocean that bathes the province of ~w whose capital ~w is the highest in Canada is ~w', [P, C, O]),nl.
 
 highest_temp_coast_province :-
 	findall(X, (data(Y, _, X, _), largest_city(A, Y), (beach(A, 'atlantic') ; beach(A, 'pacific'))), L),
@@ -169,4 +169,9 @@ highest_temp_coast_province :-
 	data(C, _, V, _),
 	largest_city(P, C),
 	beach(P, O),
-	format('The coastal province bathed by the ~w ocean, whose largest city has the highest average temperature, is ~w', [O, P]).
+
+  format('The coastal province bathed by the ~w ocean, whose largest city has the highest average temperature, is ~w', [O, P]),nl.
+
+resolve:-
+highest_temp_coast_province,
+province_highest_capital_ocean.
