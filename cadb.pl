@@ -70,6 +70,12 @@ beach('british columbia','pacific').
 beach('alberta','none').
 beach('saskatchewan','none').
 
+write_list([]).
+
+write_list([Head|Tail]) :-
+  write(Head), nl,
+  write_list(Tail).
+  
 province_capitals:-
     province(X),
     capital(X, Y),
@@ -85,14 +91,14 @@ ocean_exit :-
     beach(Y, X),
     format('The province of ~w has access to the ~w ocean', [Y, X]).
 
-which_ocean :-
-    province(X),
-    ocean(Y),
-    format('~w has a beatiful view from ~w ocean',[X,Y]).
+# which_ocean :-
+#     province(X),
+#     ocean(Y),
+#     format('~w has a beatiful view from ~w ocean',[X,Y]).
 
-surrounded_by_ocean :-
-    ocean(Y),
-    format('Canada is surrounded by ~w ocean', Y).
+# surrounded_by_ocean :-
+#     ocean(Y),
+#     format('Canada is surrounded by ~w ocean', Y).
 
 max_height :-
     findall(X, data(_, X, _, _), L),
@@ -147,12 +153,6 @@ highest_temp_coast_province :-
 	largest_city(P, C),
 	beach(P, O),
 	format('The coastal province bathed by the ~w ocean, whose largest city has the highest average temperature, is ~w', [O, P]).
-
-write_list([]).
-
-write_list([Head|Tail]) :-
-  write(Head), nl,
-  write_list(Tail).
 
 
 lowNonCap :-
