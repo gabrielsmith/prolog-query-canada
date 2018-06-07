@@ -137,11 +137,9 @@ weather(X) :-
 	format('The average temperature of ~w is ~f °C', [X,K]).
 
 
-
 average_weather([],[],X,Y) :-
     Avg is (X/Y),
     format('The average temperature of Canada is ~2f °C', [Avg]).
-
 
 average_weather([Head1|Tail1], [Head2|Tail2], X, Y) :-
     Avg is ((Head1 + Head2)/2),
