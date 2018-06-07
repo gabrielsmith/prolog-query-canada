@@ -39,9 +39,9 @@ data('edmonton', 671, 9.5, -2.3).
 data('st. john\'s', 141, 9.0, 1.0).
 data('montreal', 36, 15.5, 2.0).
 data('moncton', 71, 10.7, 0.1).
-data('vancouver', 4, 13.9, 6.8).
 data('saskatoon', 504, 8.6, -3.5).
 data('calgary', 1084, 10.8, -1.9).
+data('vancouver', 4, 13.9, 6.8).
 
 largest_city(canada, toronto).
 largest_city(ontario, toronto).
@@ -152,3 +152,21 @@ average_weather(X) :-
     findall(X, data(_,_,X,_), ListMaior),
     findall(Y, data(_,_,_,Y), ListMenor),
     average_weather(ListMaior, ListMenor, 0, 0).
+  K > 7,
+	format('The average temperature of ~w is ~f °C', [X,K]).
+
+province_highest_capital_ocean :-
+    findall(X, (data(Y, X, _, _), capital(_, Y)), L),
+    max_list(L, V),
+    data(C, V, _, _),
+    capital(P, C),
+    beach(P, O),
+    format('The ocean that bathes the province of ~w whose capital ~w is the highest in Canada is ~w', [P, C, O]).
+
+highest_temp_coast_province :-
+	findall(X, (data(Y, _, X, _), largest_city(A, Y), (beach(A, 'atlantic') ; beach(A, 'pacific'))), L),
+	max_list(L, V),
+	data(C, _, V, _),
+	largest_city(P, C),
+	beach(P, O),
+	format('The coastal province bathed by the ~w ocean, whose largest city has the highest average temperature, is ~w', [O, P]).
