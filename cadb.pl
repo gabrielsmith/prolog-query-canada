@@ -133,7 +133,8 @@ height(X) :-
 weather(X) :-
 	data(X,_,Y,Z),
 	K is ((Y + Z)/2),
-	format('The average temperature of ~w is ~f °C', [X,K]).
+  K > 7,
+	format('The average temperature of ~w is ~2f °C', [X,K]).
 
 
 
@@ -152,8 +153,7 @@ average_weather(X) :-
     findall(X, data(_,_,X,_), ListMaior),
     findall(Y, data(_,_,_,Y), ListMenor),
     average_weather(ListMaior, ListMenor, 0, 0).
-  K > 7,
-	format('The average temperature of ~w is ~f °C', [X,K]).
+
 
 province_highest_capital_ocean :-
     findall(X, (data(Y, X, _, _), capital(_, Y)), L),
