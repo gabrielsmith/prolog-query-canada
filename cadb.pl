@@ -140,4 +140,4 @@ province_highest_capital_ocean :-
     data(C, V, _, _),
     capital(P, C),
     beach(P, O),
-    format('The ocean that bathes the province of ~w whose capital is the highest in Canada is ~w', [P, O]).
+    format('The ocean that bathes the province of ~w whose capital ~w is the highest in Canada is ~w', [P, C, O]).
