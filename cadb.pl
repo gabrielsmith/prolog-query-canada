@@ -70,6 +70,13 @@ beach('british columbia','pacific').
 beach('alberta','none').
 beach('saskatchewan','none').
 
+write_list([]).
+
+write_list([Head|Tail]) :-
+  write(Head),
+  write(' '), nl,
+  write_list(Tail).
+  
 province_capitals:-
     province(X),
     capital(X, Y),
@@ -85,15 +92,6 @@ ocean_exit :-
     beach(Y, X),
     format('The province of ~w has access to the ~w ocean', [Y, X]).
 
-which_ocean :-
-    province(X),
-    ocean(Y),
-    format('~w has a beatiful view from ~w ocean',[X,Y]).
-
-surrounded_by_ocean :-
-    ocean(Y),
-    format('Canada is surrounded by ~w ocean', Y).
-
 max_height :-
     findall(X, data(_, X, _, _), L),
     max_list(L, V),
@@ -107,21 +105,19 @@ capital_max_height :-
 
 height(X) :-
 	data(X,Y,_,_),
-	format('The height of ~w is ~d', [X,Y]).
+	format('The height of ~w is ~d m', [X,Y]).
 
 
 weather_7 :-
 	data(X,_,Y,Z),
 	K is ((Y + Z)/2),
-  K > 7,
-	format('The average temperature of ~w is ~2f °C', [X,K]).
-
+    K > 7,
+	format('~w has the average temperature higher than 7°C and is ~2f °C', [X,K]).
 
 
 average_weather([],[],X,Y) :-
     Avg is (X/Y),
     format('The average temperature of Canada is ~2f °C', [Avg]).
-
 
 average_weather([Head1|Tail1], [Head2|Tail2], X, Y) :-
     Avg is ((Head1 + Head2)/2),
@@ -129,11 +125,10 @@ average_weather([Head1|Tail1], [Head2|Tail2], X, Y) :-
     L is (Y + 1),
     average_weather(Tail1,Tail2,K,L).
 
-average_weather(X) :-
+average_weather :-
     findall(X, data(_,_,X,_), ListMaior),
     findall(Y, data(_,_,_,Y), ListMenor),
-    average_weather(ListMaior, ListMenor, 0, 0).
-
+    average_weather(ListMaior, ListMenor, 0, 0). 
 
 province_highest_capital_ocean :-
     findall(X, (data(Y, X, _, _), capital(_, Y)), L),
@@ -141,7 +136,15 @@ province_highest_capital_ocean :-
     data(C, V, _, _),
     capital(P, C),
     beach(P, O),
+    write_province_highest_capital_ocean(P,C,O).
+
+write_province_highest_capital_ocean(P,C,O) :-
+    O \= none,
     format('The ocean that bathes the province of ~w whose capital ~w is the highest in Canada is ~w', [P, C, O]),nl.
+
+write_province_highest_capital_ocean(P,C,'none') :-
+    format('The province of ~w whose capital ~w is the highest in Canada is not bathed by any ocean', [P, C]),nl.
+
 
 highest_temp_coast_province :-
 	findall(X, (data(Y, _, X, _), largest_city(A, Y), (beach(A, 'atlantic') ; beach(A, 'pacific'))), L),
@@ -149,18 +152,12 @@ highest_temp_coast_province :-
 	data(C, _, V, _),
 	largest_city(P, C),
 	beach(P, O),
-	format('The coastal province bathed by the ~w ocean, whose largest city has the highest average temperature, is ~w', [O, P]).
-
-write_list([]).
-
-write_list([Head|Tail]) :-
-  write(Head), nl,
-  write_list(Tail).
+	format('The coastal province whose largest city has the highest maximum temperature, is ~w and it is bathed by the ~w ocean.', [P, O]).
 
 
 lowNonCap :-
 	findall(Y, (data(Y, X, _, _), X<50), L),
 	findall(X,(capital(_,X)), L2 ),
 	subtract(L,L2,O),
-	format('The not capitals lower than 50m are'),
+	format('The not capitals lower than 50m are '),
 	write_list(O).
