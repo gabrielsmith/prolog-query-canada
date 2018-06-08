@@ -76,7 +76,7 @@ write_list([Head|Tail]) :-
   write(Head),
   write(' '), nl,
   write_list(Tail).
-  
+
 province_capitals:-
     province(X),
     capital(X, Y),
@@ -112,7 +112,7 @@ weather_7 :-
 	data(X,_,Y,Z),
 	K is ((Y + Z)/2),
     K > 7,
-	format('~w has the average temperature higher than 7°C and is ~2f °C', [X,K]).
+	format('~w has the average temperature higher than 7 C and is ~2f C', [X,K]).
 
 
 average_weather([],[],X,Y) :-
@@ -128,7 +128,7 @@ average_weather([Head1|Tail1], [Head2|Tail2], X, Y) :-
 average_weather :-
     findall(X, data(_,_,X,_), ListMaior),
     findall(Y, data(_,_,_,Y), ListMenor),
-    average_weather(ListMaior, ListMenor, 0, 0). 
+    average_weather(ListMaior, ListMenor, 0, 0).
 
 province_highest_capital_ocean :-
     findall(X, (data(Y, X, _, _), capital(_, Y)), L),
