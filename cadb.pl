@@ -110,7 +110,7 @@ height(X) :-
 	format('The height of ~w is ~d', [X,Y]).
 
 
-weather(X) :-
+weather_7 :-
 	data(X,_,Y,Z),
 	K is ((Y + Z)/2),
   K > 7,
